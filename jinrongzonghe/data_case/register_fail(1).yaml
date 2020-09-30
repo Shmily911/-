@@ -1,0 +1,39 @@
+# 手机号为空，密码6位，注册失败
+- data: {"mobilephone":"","pwd":"abcdef"}
+  except: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+# 手机号正确，密码为空，注册失败
+- data: {"mobilephone":"13227011055","pwd":""}
+  except: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+# 手机号为空，密码为空，注册失败
+- data: {"mobilephone":"","pwd":""}
+  except: {"code":20103,"data":{},"msg":"参数错误：参数不能为空","status":0}
+
+# 手机号正确，密码为5，注册失败
+- data: {"mobilephone":"13333333333","pwd":"12345"}
+  except: {"code":20108,"data":{},"msg":"参数错误：密码长度必须为6~18","status":0}
+
+# 手机号正确，密码为19，注册失败
+- data: {"mobilephone":"13333333333","pwd":"1234567890123456789"}
+  except: {"code":20108,"data":{},"msg":"参数错误：密码长度必须为6~18","status":0}
+
+# 手机号为小于11，密码6位，注册失败
+- data: {"mobilephone":"1333333333","pwd":"abcdef"}
+  except: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+# 手机号为大于11，密码6位，注册失败
+- data: {"mobilephone":"133333333333","pwd":"abcdef"}
+  except: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+# 手机号为含特殊字符，密码6位，注册失败
+- data: {"mobilephone":"13&333333333","pwd":"abcdef"}
+  except: {"code":20109,"data":{},"msg":"手机号码格式不正确","status":0}
+
+# 手机号为已被注册，密码6位，注册失败
+- data: {"mobilephone":"13227011051","pwd":"abcdef"}
+  except: {"code":20110,"data":{},"msg":"手机号码已被注册","status":0}
+
+# 手机号为非手机端格式，密码6位，注册失败
+- data: {"mobilephone":"11133333333","pwd":"abcdef"}
+  except: {"code":20110,"data":{},"msg":"手机号码格式不正确","status":0}
